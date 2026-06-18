@@ -265,7 +265,7 @@ Grad-CAM is used to inspect which image regions different models focus on when m
 
 ![Grad-CAM Comparison](figures/gradcam_comparison.png)
 
-The visualisation helps compare whether each model focuses on insect body regions, background context, or less relevant image areas.
+The Grad-CAM figure is a derived visualisation generated during model evaluation and is included only for academic and educational demonstration. The full raw dataset, standalone raw image files, pretrained weights, and trained checkpoints are not redistributed in this repository.
 
 ## Key Findings
 
@@ -325,9 +325,9 @@ These files are excluded because they are large dataset, pretrained-weight, chec
 
 ## Usage Notes
 
-This repository is intended for academic, educational, and portfolio demonstration purposes.
+This repository is intended for academic and educational demonstration purposes.
 
-The IP102 raw dataset, image files, pretrained weights, and trained checkpoints are not redistributed in this repository. Please refer to the official IP102 repository for dataset access, usage restrictions, and citation requirements.
+The IP102 full raw dataset, standalone raw image files, pretrained weights, and trained checkpoints are not redistributed in this repository. Please refer to the official IP102 repository for dataset access, usage restrictions, and citation requirements.
 
 ## Acknowledgement and Citation
 
@@ -338,7 +338,7 @@ This project uses the IP102 dataset and related resources from the official IP10
 * Dataset archive: `ip102_v1.1.tar` from the dataset download link provided by the official repository
 * Pretrained ResNet50 weights: `resnet50_0.497.pkl` from the pretrained model resources provided by the official repository
 
-The IP102 dataset is used only for academic and educational purposes in this project. The raw dataset, image files, pretrained weights, and trained checkpoints are not redistributed in this repository.
+The IP102 dataset is used only for academic and educational purposes in this project. The raw dataset, standalone raw image files, pretrained weights, and trained checkpoints are not redistributed in this repository.
 
 If you use the IP102 dataset, please cite the original paper:
 
@@ -358,6 +358,7 @@ If you use the IP102 dataset, please cite the original paper:
 * The project focuses on image-level classification rather than object detection or instance segmentation.
 * The pretrained weights and raw dataset must be downloaded separately.
 * The notebook is optimised for Google Colab rather than a fully packaged command-line training pipeline.
+* The included result visualisations are generated from one experimental run and may vary under different random seeds, hardware settings, or training configurations.
 
 ## Future Work
 
