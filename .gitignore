@@ -216,3 +216,64 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+
+# ==============================
+
+# Project-specific files
+
+# Fine-Grained Insect Pest Classification
+
+# ==============================
+
+# Jupyter
+
+.ipynb_checkpoints/
+
+# Raw IP102 dataset files
+
+ip102_v1.1/
+ip102_v1.1.tar
+*.tar
+*.tar.gz
+
+# Extracted image folders
+
+images/
+data/
+dataset/
+datasets/
+
+# Pretrained model files and checkpoints
+
+resnet50_0.497.pkl
+*.pkl
+*.pt
+*.pth
+*.ckpt
+
+# Training outputs and experiment folders
+
+outputs/
+results/
+runs/
+checkpoints/
+logs/
+wandb/
+
+# Exported result archives
+
+insect_pest_classification_outputs.zip
+*.zip
+
+# Temporary Colab / local files
+
+/content/
+drive/
+*.tmp
+*.bak
+
+# System files
+
+.DS_Store
+Thumbs.db
