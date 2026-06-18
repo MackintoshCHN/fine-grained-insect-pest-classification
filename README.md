@@ -1,12 +1,12 @@
 # Fine-Grained Insect Pest Classification
 
-This project builds a fine-grained image classification pipeline for insect pest recognition using the IP102 dataset. It compares several CNN-based baselines with a dual-stream vision transformer model that combines Swin Transformer and BEiT representations for 102-class insect pest classification.
+This project builds a fine-grained image classification pipeline for insect pest recognition using the IP102 dataset. It compares multiple CNN-based baseline models with a dual-stream vision transformer model that combines Swin Transformer and BEiT representations for 102-class insect pest classification.
 
-The project covers dataset preparation, exploratory checks, model training, test-set evaluation, per-class analysis, confusion matrices, and Grad-CAM visualisation.
+The project covers dataset preparation, exploratory checks, model training, test-set evaluation, per-class analysis, confusion matrices, classification reports, and Grad-CAM visualisation.
 
 ## Project Overview
 
-Fine-grained insect pest classification is challenging because many pest categories have visually similar body shapes, colours, and textures. The IP102 dataset also contains a long-tailed class distribution, which makes model evaluation more difficult than standard balanced image classification tasks.
+Fine-grained insect pest classification is challenging because many insect pest categories have visually similar body shapes, colours, textures, and growth-stage variations. The IP102 dataset also contains a naturally long-tailed class distribution, making it more difficult than standard balanced image classification tasks.
 
 This project investigates the task by comparing:
 
@@ -58,7 +58,11 @@ Original dataset repository:
 
 https://github.com/xpwu95/IP102
 
-The raw dataset is not included in this repository due to file size. To reproduce the notebook, download the required files from the original IP102 resources.
+The IP102 dataset contains 102 insect pest categories and more than 75,000 images. It has a naturally long-tailed distribution and is designed for insect pest recognition research.
+
+The raw dataset is not included in this repository due to file size and dataset usage restrictions. Please refer to the official IP102 repository for dataset access and usage terms.
+
+The official IP102 repository states that the dataset is free for academic usage. For other purposes, users should contact the dataset author listed in the original repository.
 
 Required files:
 
@@ -163,9 +167,9 @@ The project evaluates four CNN-based baseline models:
 * EfficientNet-B0
 * MobileNetV2
 
-These models provide a baseline comparison across different convolutional architectures with different parameter-efficiency and feature-extraction characteristics.
+These models provide baseline comparisons across different convolutional architectures with different parameter-efficiency and feature-extraction characteristics.
 
-### Dual-Stream Swin-BEiT Model
+### DualStream Swin-BEiT Model
 
 The dual-stream model combines representations from Swin Transformer and BEiT. The goal is to compare transformer-based feature extraction against conventional CNN baselines on a fine-grained insect pest classification task.
 
@@ -209,7 +213,7 @@ The DualStream Swin-BEiT model achieved the strongest overall test-set performan
 
 ## Confusion Matrix Analysis
 
-The confusion matrices show how each model performs across selected insect pest classes and where class confusion occurs.
+The confusion matrices show how each model performs across insect pest classes and where class confusion occurs.
 
 ### ResNet50
 
@@ -318,6 +322,35 @@ images/
 ```
 
 These files are excluded because they are large dataset, pretrained-weight, checkpoint, or generated-output files.
+
+## Usage Notes
+
+This repository is intended for academic, educational, and portfolio demonstration purposes.
+
+The IP102 raw dataset, image files, pretrained weights, and trained checkpoints are not redistributed in this repository. Please refer to the official IP102 repository for dataset access, usage restrictions, and citation requirements.
+
+## Acknowledgement and Citation
+
+This project uses the IP102 dataset and related resources from the official IP102 repository:
+
+* Dataset repository: https://github.com/xpwu95/IP102
+* Class labels: `classes.txt` from the official IP102 repository
+* Dataset archive: `ip102_v1.1.tar` from the dataset download link provided by the official repository
+* Pretrained ResNet50 weights: `resnet50_0.497.pkl` from the pretrained model resources provided by the official repository
+
+The IP102 dataset is used only for academic and educational purposes in this project. The raw dataset, image files, pretrained weights, and trained checkpoints are not redistributed in this repository.
+
+If you use the IP102 dataset, please cite the original paper:
+
+```bibtex
+@inproceedings{wu2019ip102,
+  title={IP102: A Large-Scale Benchmark Dataset for Insect Pest Recognition},
+  author={Wu, Xiaoping and Zhan, Chi and Lai, Yu-Kun and Cheng, Ming-Ming and Yang, Jufeng},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={8787--8796},
+  year={2019}
+}
+```
 
 ## Limitations
 
