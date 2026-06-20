@@ -4,6 +4,8 @@ This project builds a fine-grained image classification pipeline for insect pest
 
 The workflow covers dataset preparation, exploratory checks, model training, test-set evaluation, per-class analysis, confusion matrices, classification reports, and Grad-CAM visualisation.
 
+![Accuracy Comparison](figures/accuracy_comparison.png)
+
 ## Project Overview
 
 Fine-grained insect pest classification is challenging because many insect pest categories have visually similar body shapes, colours, textures, and growth-stage variations. The IP102 dataset also contains a naturally long-tailed class distribution, making it more difficult than standard balanced image classification tasks.
@@ -16,39 +18,15 @@ This project investigates the task by comparing:
 * MobileNetV2
 * DualStream Swin-BEiT model
 
-The final evaluation uses accuracy, precision, recall, F1-score, confusion matrices, per-class accuracy, and Grad-CAM visualisation.
+The final evaluation uses:
 
-## Repository Structure
-
-```text
-fine-grained-insect-pest-classification/
-├── README.md
-├── .gitignore
-├── requirements.txt
-├── classes.txt
-├── insect_pest_classification.ipynb
-├── figures/
-│   ├── accuracy_comparison.png
-│   ├── model_comparison_all_metrics_annotated.png
-│   ├── line_comparison_metrics.png
-│   ├── gradcam_comparison.png
-│   ├── ResNet50_confusion_matrix.png
-│   ├── DenseNet121_confusion_matrix.png
-│   ├── EfficientNet_B0_confusion_matrix.png
-│   ├── MobileNetV2_confusion_matrix.png
-│   ├── DualStream_Swin_BEiT_confusion_matrix.png
-│   ├── ResNet50_top10_per_class_accuracy.png
-│   ├── DenseNet121_top10_per_class_accuracy.png
-│   ├── EfficientNet_B0_top10_per_class_accuracy.png
-│   ├── MobileNetV2_top10_per_class_accuracy.png
-│   └── DualStream_Swin_BEiT_top10_per_class_accuracy.png
-└── reports/
-    ├── ResNet50_report.txt
-    ├── DenseNet121_report.txt
-    ├── EfficientNet_B0_report.txt
-    ├── MobileNetV2_report.txt
-    └── DualStream_Swin_BEiT_report.txt
-```
+* accuracy
+* weighted precision
+* weighted recall
+* weighted F1-score
+* confusion matrices
+* per-class accuracy
+* Grad-CAM visualisation
 
 ## Dataset
 
@@ -64,13 +42,17 @@ The IP102 dataset contains 102 insect pest categories and more than 75,000 image
 
 The raw dataset is not included in this repository due to file size and dataset usage restrictions. Please refer to the official IP102 repository for dataset access instructions, usage notes, and citation requirements.
 
-Required files:
+## Required External Files
+
+The notebook expects the following files when reproducing the full workflow:
 
 ```text
 classes.txt
 ip102_v1.1.tar
 resnet50_0.497.pkl
 ```
+
+The repository includes `classes.txt` for class-label reference. The dataset archive and pretrained ResNet50 weights should be obtained from the official IP102 resources.
 
 The dataset archive `ip102_v1.1.tar` contains:
 
@@ -81,16 +63,38 @@ val.txt
 test.txt
 ```
 
-Dataset archive:
+The raw dataset archive, extracted images, pretrained weights, and model checkpoints are intentionally not redistributed in this repository.
+
+## Repository Structure
 
 ```text
-https://drive.google.com/drive/folders/1svFSy2Da3cVMvekBwe13mzyx38XZ9xWo?usp=sharing
-```
-
-Pretrained ResNet50 model:
-
-```text
-https://drive.google.com/drive/folders/1MTfO3zq6BkJfhzQqxoNblQuQealdSs9U?usp=sharing
+fine-grained-insect-pest-classification/
+├── figures/
+│   ├── DenseNet121_confusion_matrix.png
+│   ├── DenseNet121_top10_per_class_accuracy.png
+│   ├── DualStream_Swin_BEiT_confusion_matrix.png
+│   ├── DualStream_Swin_BEiT_top10_per_class_accuracy.png
+│   ├── EfficientNet_B0_confusion_matrix.png
+│   ├── EfficientNet_B0_top10_per_class_accuracy.png
+│   ├── MobileNetV2_confusion_matrix.png
+│   ├── MobileNetV2_top10_per_class_accuracy.png
+│   ├── ResNet50_confusion_matrix.png
+│   ├── ResNet50_top10_per_class_accuracy.png
+│   ├── accuracy_comparison.png
+│   ├── gradcam_comparison.png
+│   ├── line_comparison_metrics.png
+│   └── model_comparison_all_metrics_annotated.png
+├── reports/
+│   ├── DenseNet121_report.txt
+│   ├── DualStream_Swin_BEiT_report.txt
+│   ├── EfficientNet_B0_report.txt
+│   ├── MobileNetV2_report.txt
+│   └── ResNet50_report.txt
+├── .gitignore
+├── README.md
+├── classes.txt
+├── insect_pest_classification.ipynb
+└── requirements.txt
 ```
 
 ## Google Colab Setup
@@ -125,7 +129,7 @@ After extraction, the expected dataset structure is:
     └── test.txt
 ```
 
-The notebook then loads the class labels, extracts the dataset if needed, prepares the train/validation/test splits, trains the models, and evaluates them on the test set.
+The notebook then loads class labels, prepares the IP102 train/validation/test splits, trains the models, and evaluates them on the test set.
 
 The notebook is Colab-first and uses Google Drive paths. For local execution, update `project_drive_dir` and the dataset paths to match the local filesystem.
 
@@ -185,12 +189,12 @@ The purpose of this model is to compare transformer-based feature extraction aga
 
 The models are evaluated using:
 
-* Accuracy
-* Precision
-* Recall
-* F1-score
-* Confusion matrix
-* Per-class accuracy
+* accuracy
+* weighted precision
+* weighted recall
+* weighted F1-score
+* confusion matrix
+* per-class accuracy
 * Grad-CAM visualisation
 
 The classification reports are included in the `reports/` folder.
@@ -208,10 +212,6 @@ The classification reports are included in the `reports/` folder.
 | DualStream Swin-BEiT |   0.7520 |             0.7506 |          0.7520 |      0.7498 |
 
 The DualStream Swin-BEiT model achieved the strongest overall test-set performance among the evaluated models.
-
-### Accuracy Comparison
-
-![Accuracy Comparison](figures/accuracy_comparison.png)
 
 ### Multi-Metric Model Comparison
 
@@ -325,12 +325,14 @@ The following files are intentionally excluded from this repository:
 
 ```text
 ip102_v1.1.tar
+ip102_v1.1/
+images/
 resnet50_0.497.pkl
 *.pth
 *.pt
 *.ckpt
+*.pkl
 insect_pest_classification_outputs.zip
-images/
 ```
 
 These files are excluded because they are large dataset, pretrained-weight, checkpoint, or generated-output files.
@@ -340,6 +342,14 @@ These files are excluded because they are large dataset, pretrained-weight, chec
 This repository contains implementation code, experiment outputs, and derived visualisations for reproducible experimentation.
 
 The IP102 full raw dataset, standalone raw image files, pretrained weights, and trained checkpoints are not redistributed in this repository. Please refer to the official IP102 repository for dataset access, usage restrictions, and citation requirements.
+
+The TXT and PNG files committed under `reports/` and `figures/` are generated experiment outputs and derived visualisations from the completed run, not redistributed raw dataset files.
+
+## License and Reuse
+
+No open-source license is currently granted for this repository. The notebook, generated reports, and generated figures are provided for reference only unless otherwise stated.
+
+The IP102 dataset, class labels, pretrained weights, and related third-party resources remain governed by their original access terms and citation requirements.
 
 ## Acknowledgement and Citation
 
@@ -417,9 +427,3 @@ Potential extensions include:
 * Seaborn
 * Grad-CAM
 * Google Colab
-
-## Reuse and Redistribution Notice
-
-No open-source license is currently provided for this repository. Reuse, redistribution, or modification of repository contents is not permitted without permission.
-
-Dataset access and usage are governed by the official IP102 resources.
