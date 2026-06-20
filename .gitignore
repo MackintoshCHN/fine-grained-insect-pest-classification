@@ -202,13 +202,11 @@ cython_debug/
 
 # .idea/
 
-# Abstra
-
-.abstra/
-
 # Visual Studio Code
 
 # .vscode/
+
+# Local editor files
 
 tempCodeRunnerFile.py
 
@@ -222,9 +220,9 @@ tempCodeRunnerFile.py
 
 # Marimo
 
+.marimo/
 marimo/_static/
 marimo/_lsp/
-**marimo**/
 
 # Streamlit
 
@@ -250,7 +248,7 @@ ip102_v1.1.tar
 *.tar
 *.tar.gz
 
-# Raw image dataset folders
+# Raw dataset folders
 
 images/
 data/
