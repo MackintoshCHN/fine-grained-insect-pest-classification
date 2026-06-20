@@ -1,8 +1,8 @@
 # Fine-Grained Insect Pest Classification
 
-This project builds a fine-grained image classification pipeline for insect pest recognition using the IP102 dataset. It compares multiple CNN-based baseline models with a dual-stream vision transformer model that combines Swin Transformer and BEiT representations for 102-class insect pest classification.
+This project builds a fine-grained image classification pipeline for insect pest recognition using the IP102 dataset. It compares several CNN-based baseline models with a dual-stream vision transformer model that combines Swin Transformer and BEiT representations for 102-class insect pest classification.
 
-The project covers dataset preparation, exploratory checks, model training, test-set evaluation, per-class analysis, confusion matrices, classification reports, and Grad-CAM visualisation.
+The workflow covers dataset preparation, exploratory checks, model training, test-set evaluation, per-class analysis, confusion matrices, classification reports, and Grad-CAM visualisation.
 
 ## Project Overview
 
@@ -56,13 +56,13 @@ This project uses the IP102 insect pest recognition dataset.
 
 Original dataset repository:
 
+```text
 https://github.com/xpwu95/IP102
+```
 
-The IP102 dataset contains 102 insect pest categories and more than 75,000 images. It has a naturally long-tailed distribution and is designed for insect pest recognition research.
+The IP102 dataset contains 102 insect pest categories and more than 75,000 images. It has a naturally long-tailed distribution and was designed for insect pest recognition research.
 
-The raw dataset is not included in this repository due to file size and dataset usage restrictions. Please refer to the official IP102 repository for dataset access and usage terms.
-
-The official IP102 repository states that the dataset is free for academic usage. For other purposes, users should contact the dataset author listed in the original repository.
+The raw dataset is not included in this repository due to file size and dataset usage restrictions. Please refer to the official IP102 repository for dataset access instructions, usage notes, and citation requirements.
 
 Required files:
 
@@ -83,11 +83,15 @@ test.txt
 
 Dataset archive:
 
+```text
 https://drive.google.com/drive/folders/1svFSy2Da3cVMvekBwe13mzyx38XZ9xWo?usp=sharing
+```
 
 Pretrained ResNet50 model:
 
+```text
 https://drive.google.com/drive/folders/1MTfO3zq6BkJfhzQqxoNblQuQealdSs9U?usp=sharing
+```
 
 ## Google Colab Setup
 
@@ -122,6 +126,8 @@ After extraction, the expected dataset structure is:
 ```
 
 The notebook then loads the class labels, extracts the dataset if needed, prepares the train/validation/test splits, trains the models, and evaluates them on the test set.
+
+The notebook is Colab-first and uses Google Drive paths. For local execution, update `project_drive_dir` and the dataset paths to match the local filesystem.
 
 ## Installation
 
@@ -171,7 +177,9 @@ These models provide baseline comparisons across different convolutional archite
 
 ### DualStream Swin-BEiT Model
 
-The dual-stream model combines representations from Swin Transformer and BEiT. The goal is to compare transformer-based feature extraction against conventional CNN baselines on a fine-grained insect pest classification task.
+The dual-stream model combines representations from Swin Transformer and BEiT.
+
+The purpose of this model is to compare transformer-based feature extraction against conventional CNN baselines on a fine-grained insect pest classification task. Swin Transformer is used to capture local window-based visual structure, while BEiT contributes global self-attention features. The two feature streams are fused before classification.
 
 ## Evaluation Metrics
 
@@ -265,7 +273,7 @@ Grad-CAM is used to inspect which image regions different models focus on when m
 
 ![Grad-CAM Comparison](figures/gradcam_comparison.png)
 
-The Grad-CAM figure is a derived visualisation generated during model evaluation and is included only for academic and educational demonstration. The full raw dataset, standalone raw image files, pretrained weights, and trained checkpoints are not redistributed in this repository.
+The Grad-CAM figure is a derived visualisation generated during model evaluation. The full raw dataset, standalone raw image files, pretrained weights, and trained checkpoints are not redistributed in this repository.
 
 ## Key Findings
 
@@ -290,7 +298,7 @@ cd fine-grained-insect-pest-classification
 pip install -r requirements.txt
 ```
 
-3. Download the IP102 dataset archive and pretrained ResNet50 file from the original project resources.
+3. Download the IP102 dataset archive and pretrained ResNet50 file from the official IP102 resources.
 
 4. Upload the following files to Google Drive:
 
@@ -309,6 +317,8 @@ insect_pest_classification.ipynb
 
 6. Run the notebook cells in order.
 
+For local execution, modify the Google Drive paths in the notebook so that they point to the local dataset and output directories.
+
 ## Files Not Included
 
 The following files are intentionally excluded from this repository:
@@ -317,6 +327,8 @@ The following files are intentionally excluded from this repository:
 ip102_v1.1.tar
 resnet50_0.497.pkl
 *.pth
+*.pt
+*.ckpt
 insect_pest_classification_outputs.zip
 images/
 ```
@@ -325,7 +337,7 @@ These files are excluded because they are large dataset, pretrained-weight, chec
 
 ## Usage Notes
 
-This repository is intended for academic and educational demonstration purposes.
+This repository contains implementation code, experiment outputs, and derived visualisations for reproducible experimentation.
 
 The IP102 full raw dataset, standalone raw image files, pretrained weights, and trained checkpoints are not redistributed in this repository. Please refer to the official IP102 repository for dataset access, usage restrictions, and citation requirements.
 
@@ -333,12 +345,12 @@ The IP102 full raw dataset, standalone raw image files, pretrained weights, and 
 
 This project uses the IP102 dataset and related resources from the official IP102 repository:
 
-* Dataset repository: https://github.com/xpwu95/IP102
+* Dataset repository: `https://github.com/xpwu95/IP102`
 * Class labels: `classes.txt` from the official IP102 repository
 * Dataset archive: `ip102_v1.1.tar` from the dataset download link provided by the official repository
 * Pretrained ResNet50 weights: `resnet50_0.497.pkl` from the pretrained model resources provided by the official repository
 
-The IP102 dataset is used only for academic and educational purposes in this project. The raw dataset, standalone raw image files, pretrained weights, and trained checkpoints are not redistributed in this repository.
+The raw dataset, standalone raw image files, pretrained weights, and trained checkpoints are not redistributed in this repository.
 
 If you use the IP102 dataset, please cite the original paper:
 
@@ -352,6 +364,26 @@ If you use the IP102 dataset, please cite the original paper:
 }
 ```
 
+## References
+
+* Xiaoping Wu, Chi Zhan, Yu-Kun Lai, Ming-Ming Cheng, and Jufeng Yang. IP102: A Large-Scale Benchmark Dataset for Insect Pest Recognition. CVPR 2019.
+  `https://openaccess.thecvf.com/content_CVPR_2019/papers/Wu_IP102_A_Large-Scale_Benchmark_Dataset_for_Insect_Pest_Recognition_CVPR_2019_paper.pdf`
+
+* Official IP102 repository.
+  `https://github.com/xpwu95/IP102`
+
+* A. Setiawan, N. Yudistira, and R. C. Wihandika. Large scale pest classification using efficient Convolutional Network with augmentation and regularizers. Computers and Electronics in Agriculture, 2022.
+  `https://www.sciencedirect.com/science/article/pii/S0168169922005191`
+
+* W. Linfeng, L. Yong, L. Jiayao, W. Yunsheng, and X. Shipu. Based on the multi-scale information sharing network of fine-grained attention for agricultural pest detection. PLOS ONE, 2023.
+  `https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0286732`
+
+* J. An, Y. Du, P. Hong, L. Zhang, and X. Weng. Insect recognition based on complementary features from multiple views. Scientific Reports, 2023.
+  `https://europepmc.org/article/pmc/pmc9940688`
+
+* S. Kar, J. Nagasubramanian, D. Elango, M. E. Carroll, C. A. Abel, A. Nair, D. S. Mueller, M. E. O'Neal, A. K. Singh, S. Sarkar, B. Ganapathysubramanian, and A. Singh. Self-supervised learning improves classification of agriculturally important insect pests in plants. The Plant Phenome Journal, 2023.
+  `https://acsess.onlinelibrary.wiley.com/doi/full/10.1002/ppj2.20079`
+
 ## Limitations
 
 * The dataset has a long-tailed class distribution, which affects minority-class performance.
@@ -359,6 +391,7 @@ If you use the IP102 dataset, please cite the original paper:
 * The pretrained weights and raw dataset must be downloaded separately.
 * The notebook is optimised for Google Colab rather than a fully packaged command-line training pipeline.
 * The included result visualisations are generated from one experimental run and may vary under different random seeds, hardware settings, or training configurations.
+* Local execution requires manual path updates because the notebook uses Google Drive paths by default.
 
 ## Future Work
 
@@ -369,6 +402,7 @@ Potential extensions include:
 * Adding more systematic hyperparameter tuning.
 * Converting the notebook workflow into reusable Python scripts.
 * Exploring detection-based pest recognition for images containing multiple insects.
+* Investigating lightweight deployment-oriented models with pruning or quantisation.
 
 ## Tech Stack
 
@@ -383,3 +417,9 @@ Potential extensions include:
 * Seaborn
 * Grad-CAM
 * Google Colab
+
+## Reuse and Redistribution Notice
+
+No open-source license is currently provided for this repository. Reuse, redistribution, or modification of repository contents is not permitted without permission.
+
+Dataset access and usage are governed by the official IP102 resources.
